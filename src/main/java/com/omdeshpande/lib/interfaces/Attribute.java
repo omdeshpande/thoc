@@ -8,5 +8,17 @@ package com.omdeshpande.lib.interfaces;
  *
  */
 public interface Attribute {
+	
+	public void setType(String type);
+	
+	public String getType();
+	
+	public void setName(String type);
+	
+	public String getName();
+	
+	public void setValue(Object value);
+	
+	public Object getValue();
 
 }

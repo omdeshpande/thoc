@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface Entity {
 
-	public void setValue(String name, Object value);
+	public void setAttribute(String name, Object value);
 	
-	public void setValues(HashMap<String, Object> values);
+	public void setAttributes(HashMap<String, Object> values);
 	
 	public Attribute getAttribute(String name);
 	

@@ -1,4 +1,4 @@
-package com.omdeshpande.blog.controller;
+package com.omdeshpande.frontend.content.controller;
 
 import org.springframework.stereotype.Controller;
 

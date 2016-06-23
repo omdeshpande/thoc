@@ -4,7 +4,7 @@
  */
 package com.omdeshpande.lib.abstracts;
 
-import com.omdeshpande.lib.interfaces.BasicBlogControllerInterface;
+import com.omdeshpande.lib.interfaces.BasicController;
 import com.omdeshpande.lib.interfaces.LayoutService;
 
 /**
@@ -12,7 +12,7 @@ import com.omdeshpande.lib.interfaces.LayoutService;
  * 
  *
  */
-public abstract class BasicBlogControllerAbstract implements BasicBlogControllerInterface {
+public abstract class BasicBlogControllerAbstract implements BasicController {
 	
 	private String viewName;
 	private LayoutService layout;

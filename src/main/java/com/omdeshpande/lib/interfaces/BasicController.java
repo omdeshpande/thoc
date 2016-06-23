@@ -7,6 +7,6 @@ package com.omdeshpande.lib.interfaces;
  * @author Om Deshpande
  *
  */
-public interface BasicBlogControllerInterface {
+public interface BasicController {
 	
 }

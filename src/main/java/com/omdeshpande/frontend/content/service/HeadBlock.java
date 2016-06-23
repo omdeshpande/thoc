@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.omdeshpande.blog.service;
+package com.omdeshpande.frontend.content.service;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -28,6 +28,13 @@
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.1.0</version>
+	</dependency>
     
     <!-- Spring dependencies -->
 	<dependency>
@@ -78,11 +85,33 @@
 	    <version>4.3.0.RELEASE</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>4.3.0.RELEASE</version>
+	</dependency>
+
+	<!-- Database related -->
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>5.1.39</version>
 	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-dbcp2</artifactId>
+	    <version>2.1.1</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.0.Final</version>
+	</dependency>
+	<!-- End Database related -->
+	
   </dependencies>
   <build>
   <plugins>

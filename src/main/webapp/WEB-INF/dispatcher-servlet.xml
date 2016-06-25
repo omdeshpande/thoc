@@ -39,6 +39,10 @@
     	<property name="password" value="root" />
     </bean>
     
+    <bean id="db" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+    
     <!-- User authentication -->
     <sec:http auto-config="true">
     	<sec:access-denied-handler error-page="/403" />

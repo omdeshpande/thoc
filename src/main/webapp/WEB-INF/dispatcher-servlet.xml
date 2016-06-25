@@ -74,7 +74,7 @@
     </sec:authentication-manager>
     
     <!-- Handlers -->
-    <bean id="homeController" class="com.omdeshpande.blog.controller.HomeController">
+    <bean id="homeController" class="com.omdeshpande.frontend.content.controller.HomeController">
     	<property name="layout" ref="homeLayout" />
     </bean>
     <bean id="loginController" class="com.omdeshpande.user.controller.LoginController">

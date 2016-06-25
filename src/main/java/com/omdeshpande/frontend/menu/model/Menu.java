@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.omdeshpande.blog.model;
+package com.omdeshpande.frontend.menu.model;
 
 /**
  * @author Om Deshpande

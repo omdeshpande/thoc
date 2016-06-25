@@ -23,7 +23,7 @@
     	Each page is divided into multiple blocks.
     	Multiple blocks can be added to the layout handler.
     -->
-	<bean id="homeHead" class="com.omdeshpande.user.controller.HeadBlock">
+	<bean id="homeHead" class="com.omdeshpande.frontend.content.service.HeadBlock">
 		<property name="css">
 			<list>
 				<value>/resources/css/bootstrap.min.css</value>
@@ -37,7 +37,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="loginHead" class="com.omdeshpande.user.controller.HeadBlock">
+	<bean id="loginHead" class="com.omdeshpande.frontend.content.service.HeadBlock">
 		<property name="css">
 			<list>
 				<value>/resources/css/bootstrap.min.css</value>

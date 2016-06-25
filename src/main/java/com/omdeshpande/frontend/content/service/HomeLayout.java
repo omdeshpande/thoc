@@ -1,4 +1,4 @@
-package com.omdeshpande.blog.service;
+package com.omdeshpande.frontend.content.service;
 
 import com.omdeshpande.lib.abstracts.LayoutAbstract;
 

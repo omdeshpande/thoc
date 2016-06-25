@@ -24,14 +24,14 @@
     	Each URL handler has a 'LayoutService' assigned to it.
     	Multiple blocks can be assigned to the LayoutService
     -->
-	<bean id="homeLayout" class="com.omdeshpande.blog.service.HomeLayout">
+	<bean id="homeLayout" class="com.omdeshpande.frontend.content.service.HomeLayout">
 		<property name="blocks">
 			<map>
 				<entry key="head" value-ref="homeHead" />
 			</map>
 		</property>
 	</bean>
-	<bean id="loginLayout" class="com.omdeshpande.blog.service.HomeLayout">
+	<bean id="loginLayout" class="com.omdeshpande.frontend.content.service.HomeLayout">
 		<property name="blocks">
 			<map>
 				<entry key="head" value-ref="loginHead" />

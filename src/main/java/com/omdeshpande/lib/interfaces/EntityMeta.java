@@ -3,26 +3,22 @@
  */
 package com.omdeshpande.lib.interfaces;
 
-import java.util.List;
-
 /**
  * @author Om Deshpande
  *
  */
 public interface EntityMeta {
 	
-	public void setName(String name);
+	public void setTitle(String name);
 	
-	public String getName();
+	public String getTitle();
 	
 	public void setDescription(String description);
 	
 	public String getDescription();
 	
-	public void setAttributes(List<Attribute> attributes);
+	public void setId(int name);
 	
-	public List<Attribute> getAttributes();
-	
-	public void addNewAttribute(Attribute attribute);
+	public int getId();
 	
 }

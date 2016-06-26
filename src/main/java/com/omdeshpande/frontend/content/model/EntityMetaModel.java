@@ -1,9 +1,9 @@
 package com.omdeshpande.frontend.content.model;
 
-import com.omdeshpande.lib.abstracts.EntityMetaAbstract;
 import com.omdeshpande.lib.interfaces.Attribute;
+import com.omdeshpande.lib.interfaces.EntityMeta;
 
-public class EntityMetaModel extends EntityMetaAbstract {
+public class EntityMetaModel implements EntityMeta {
 
 	private int id;
 	private String title;

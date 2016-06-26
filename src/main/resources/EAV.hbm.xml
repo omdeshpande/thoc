@@ -37,4 +37,26 @@
 		<many-to-one name="dataType" class="AttributeDataTypeModel" column="attribute_data_type" />
 		<many-to-one name="displayType" class="AttributeDisplayTypeModel" column="attribute_display_type" />
 	</class>
+	
+	<class name="AttributeValueIntModel" table="attribute_values_int">
+		<id name="id" type="int" column="attribute_id">
+			<generator class="foreign">
+				<param name="property">attributeId</param>
+			</generator>
+		</id>
+		<many-to-one name="entity" class="EntityModel" column="entity_id" />
+		<property name="value" type="int" column="value" />
+		<one-to-one name="attribute" class="AttributeModel" />
+	</class>
+	
+	<class name="AttributeValueVarcharModel" table="attribute_values_varchar">
+		<id name="id" type="int" column="attribute_id">
+			<generator class="foreign">
+				<param name="property">attributeId</param>
+			</generator>
+		</id>
+		<many-to-one name="entity" class="EntityModel" column="entity_id" />
+		<property name="value" type="string" column="value" />
+		<one-to-one name="attribute" class="AttributeModel" />
+	</class>
 </hibernate-mapping>

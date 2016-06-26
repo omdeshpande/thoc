@@ -3,20 +3,18 @@
  */
 package com.omdeshpande.lib.interfaces;
 
-import java.util.HashMap;
-
 /**
  * @author Om Deshpande
  *
  */
 public interface Entity {
 
-	public void setValue(String name, Object value);
+	public void setId(int id);
 	
-	public void setValues(HashMap<String, Object> values);
+	public int getId();
 	
-	public Object getValue(String name);
+	public void setMeta(EntityMeta meta);
 	
-	public HashMap<String, Object> getValues();
+	public EntityMeta getMeta();
 	
 }

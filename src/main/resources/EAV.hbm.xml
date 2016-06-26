@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="com.omdeshpande.frontend.content.model">
+	<class name="EntityMetaModel" table="entity_type">
+		<id name="id" type="int" column="entity_type_id">
+			<generator class="native" />
+		</id>
+		<property name="title" type="string" column="entity_title" />
+		<property name="description" type="string" column="entity_description" />
+	</class>
+	
+	<class name="EntityModel" table="entities">
+		<id name="id" type="int" column="entity_id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="meta" column="entity_type_id" class="EntityMetaModel" not-null="true" />
+	</class>
+	
+	<class name="AttributeDataTypeModel" table="attribute_data_types">
+		<id name="dataType" type="string" column="data_type" />
+	</class>
+	
+	<class name="AttributeDisplayTypeModel" table="attribute_display_types">
+		<id name="displayType" type="string" column="display_type" />
+	</class>
+	
+	<class name="AttributeModel" table="attribute_type">
+		<id name="id" type="int" column="attribute_id">
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="entity" class="EntityMetaModel" column="entity_type_id" not-null="true" />
+		<property name="name" type="string" column="attribute_name" />
+		<property name="description" type="string" column="attribute_description" />
+		<many-to-one name="dataType" class="AttributeDataTypeModel" column="attribute_data_type" />
+		<many-to-one name="displayType" class="AttributeDisplayTypeModel" column="attribute_display_type" />
+	</class>
+</hibernate-mapping>

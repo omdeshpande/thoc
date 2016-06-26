@@ -9,16 +9,28 @@ package com.omdeshpande.lib.interfaces;
  */
 public interface Attribute {
 	
-	public void setType(String type);
+	public void setId(int id);
 	
-	public String getType();
+	public int getId();
+		
+	public void setEntity(EntityMeta entity);
 	
-	public void setName(String type);
+	public EntityMeta getEntity();
+	
+	public void setName(String name);
 	
 	public String getName();
 	
-	public void setValue(Object value);
+	public void setDescription(String description);
 	
-	public Object getValue();
+	public String getDescription();
+	
+	public void setDataType(AttributeDataType dataType);
+	
+	public AttributeDataType getDataType();
+	
+	public void setDisplayType(AttributeDisplayType dataType);
+	
+	public AttributeDisplayType getDisplayType();
 
 }

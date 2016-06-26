@@ -6,6 +6,6 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<mapping resource="EntityMetaModel.hbm.xml" />
+		<mapping resource="EAV.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

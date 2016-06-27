@@ -25,6 +25,7 @@
 			/WEB-INF/handlers.xml
 			/WEB-INF/layouts.xml
 			/WEB-INF/blocks.xml
+			/WEB-INF/dao.xml
 		</param-value>
 	</context-param>
 	

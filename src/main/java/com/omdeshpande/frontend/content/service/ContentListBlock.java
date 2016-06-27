@@ -8,13 +8,15 @@ import java.util.List;
 import com.omdeshpande.lib.abstracts.BlockAbstract;
 
 /**
- * @author om
+ * @author Om Deshpande
  *
  */
-public class ContentList extends BlockAbstract {
+public class ContentListBlock extends BlockAbstract {
 
 	public List<?> getContent() {
 		return null;
 	}
+	
+	
 
 }

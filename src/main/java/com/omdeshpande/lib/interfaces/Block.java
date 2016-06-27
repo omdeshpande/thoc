@@ -9,11 +9,11 @@ import java.util.List;
  * @author Om Deshpande
  *
  */
-public interface BlockService {
+public interface Block {
 
 	List<String> getCss();
 
 	List<String> getJs();
 	
-	List<?> getContent();
+	
 }

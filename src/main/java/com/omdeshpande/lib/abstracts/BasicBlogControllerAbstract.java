@@ -5,7 +5,7 @@
 package com.omdeshpande.lib.abstracts;
 
 import com.omdeshpande.lib.interfaces.BasicController;
-import com.omdeshpande.lib.interfaces.LayoutService;
+import com.omdeshpande.lib.interfaces.Layout;
 
 /**
  * @author Om Deshpande
@@ -15,17 +15,17 @@ import com.omdeshpande.lib.interfaces.LayoutService;
 public abstract class BasicBlogControllerAbstract implements BasicController {
 	
 	private String viewName;
-	private LayoutService layout;
+	private Layout layout;
 	public String getViewName() {
 		return viewName;
 	}
 	public void setViewName(String viewName) {
 		this.viewName = viewName;
 	}
-	public LayoutService getLayout() {
+	public Layout getLayout() {
 		return layout;
 	}
-	public void setLayout(LayoutService layout) {
+	public void setLayout(Layout layout) {
 		this.layout = layout;
 	}
 }

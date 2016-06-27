@@ -9,10 +9,10 @@ import java.util.Map;
  * @author Om Deshpande
  *
  */
-public interface LayoutService {
+public interface Layout {
 
 	public void prepareLayout();
 
-	public Map<String, BlockService> getBlocks();
+	public Map<String, Block> getBlocks();
 	
 }

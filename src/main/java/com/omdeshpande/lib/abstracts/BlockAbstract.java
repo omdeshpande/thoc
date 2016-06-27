@@ -6,13 +6,13 @@ package com.omdeshpande.lib.abstracts;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.omdeshpande.lib.interfaces.BlockService;
+import com.omdeshpande.lib.interfaces.Block;
 
 /**
  * @author Om Deshpande
  *
  */
-public abstract class BlockAbstract implements BlockService {
+public abstract class BlockAbstract implements Block {
 
 	/**
 	 * @author Om Deshpande

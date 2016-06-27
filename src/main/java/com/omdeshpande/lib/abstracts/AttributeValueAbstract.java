@@ -8,10 +8,10 @@ import com.omdeshpande.lib.interfaces.AttributeValue;
 import com.omdeshpande.lib.interfaces.Entity;
 
 /**
- * @author om
+ * @author Om Deshpande
  *
  */
-public class AttributeValueAbstract implements AttributeValue {
+public abstract class AttributeValueAbstract implements AttributeValue {
 	
 	private int id;
 	private Entity entity;

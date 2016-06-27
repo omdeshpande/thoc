@@ -5,22 +5,22 @@ package com.omdeshpande.lib.abstracts;
 
 import java.util.Map;
 
-import com.omdeshpande.lib.interfaces.BlockService;
-import com.omdeshpande.lib.interfaces.LayoutService;
+import com.omdeshpande.lib.interfaces.Block;
+import com.omdeshpande.lib.interfaces.Layout;
 
 /**
  * @author Om Deshpande
  *
  */
-public abstract class LayoutAbstract implements LayoutService {
+public abstract class LayoutAbstract implements Layout {
 	
-	private Map<String, BlockService> blocks;
+	private Map<String, Block> blocks;
 
-	public Map<String, BlockService> getBlocks() {
+	public Map<String, Block> getBlocks() {
 		return blocks;
 	}
 
-	public void setBlocks(Map<String, BlockService> blocks) {
+	public void setBlocks(Map<String, Block> blocks) {
 		this.blocks = blocks;
 	}
 	

@@ -46,7 +46,7 @@ public abstract class HibernateDaoAbstract<T, PK> implements Dao<T, PK>, Hiberna
 	@SuppressWarnings("unchecked")
 	public PK create(T object) {
 		PK id = (PK) session.save(object);
-		return (PK) id;
+		return id;
 	}
 
 	public void update(T object) {
@@ -54,7 +54,7 @@ public abstract class HibernateDaoAbstract<T, PK> implements Dao<T, PK>, Hiberna
 	}
 
 	public T read(PK id) {
-		return (T) session.get(type, (Serializable) id);
+		return session.get(type, (Serializable) id);
 	}
 
 	public void delete(T object) {

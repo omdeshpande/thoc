@@ -3,8 +3,6 @@
  */
 package com.omdeshpande.frontend.content.service;
 
-import java.util.List;
-
 import com.omdeshpande.lib.abstracts.BlockAbstract;
 
 /**
@@ -12,11 +10,11 @@ import com.omdeshpande.lib.abstracts.BlockAbstract;
  *
  */
 public class ContentListBlock extends BlockAbstract {
-
-	public List<?> getContent() {
-		return null;
+	
+	protected int contentType;
+	
+	protected void setContentType(int contentType) {
+		this.contentType = contentType;
 	}
-	
-	
 
 }

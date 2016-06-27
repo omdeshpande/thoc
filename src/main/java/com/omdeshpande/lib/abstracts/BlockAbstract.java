@@ -4,9 +4,11 @@
 package com.omdeshpande.lib.abstracts;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.omdeshpande.lib.interfaces.Block;
+import com.omdeshpande.lib.interfaces.Dao;
 
 /**
  * @author Om Deshpande
@@ -29,6 +31,21 @@ public abstract class BlockAbstract implements Block {
 	 */
 	private ArrayList<String> css;
 	private ArrayList<String> js;
+	
+	/**
+	 * @author Om Deshpande
+	 * HashMap of the DOA required for the block (if required) need to be 
+	 * injected via XML to be used here
+	 */
+	private HashMap<String, Dao<?, ?>> dao;
+	
+	public HashMap<String, Dao<?, ?>> getDao() {
+		return dao;
+	}
+
+	public void setDao(HashMap<String, Dao<?, ?>> dao) {
+		this.dao = dao;
+	}
 
 	public String getHandler() {
 		return handler;

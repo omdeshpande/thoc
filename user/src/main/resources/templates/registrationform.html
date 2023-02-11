@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="flex justify-center h-screen">
+        <form class="bg-white p-6 rounded-lg w-3/4" th:action="@{/register}" method="post">
+            <h2 class="text-lg font-medium mb-4">Register</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="firstname">
+                    First Name
+                </label>
+                <input 
+                    th:value="${user.firstName}"
+                    class="border border-gray-400 p-2 rounded-lg w-full" 
+                    type="text" 
+                    id="firstname" 
+                    name="firstName" 
+                    required
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="lastname">
+                    Last Name
+                </label>
+                <input 
+                    th:value="${user.lastName}"
+                    class="border border-gray-400 p-2 rounded-lg w-full" 
+                    type="text" 
+                    id="lastname" 
+                    name="lastName" 
+                    required
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="username">
+                    Email
+                </label>
+                <input 
+                    th:value="${user.username}"
+                    class="border border-gray-400 p-2 rounded-lg w-full" 
+                    type="username" 
+                    id="username" 
+                    name="username" 
+                    required
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="mobile">
+                    Mobile
+                </label>
+                <input 
+                    th:value="${user.mobile}"
+                    class="border border-gray-400 p-2 rounded-lg w-full" 
+                    type="tel" 
+                    id="mobile" 
+                    name="mobile" 
+                    required
+                />
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-medium mb-2" for="password">
+                    Password
+                </label>
+                <input 
+                    th:value="${user.password}"
+                    class="border border-gray-400 p-2 rounded-lg w-full" 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required
+                />
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

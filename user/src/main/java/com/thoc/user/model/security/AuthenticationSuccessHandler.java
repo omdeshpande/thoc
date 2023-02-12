@@ -1,8 +1,9 @@
-package com.thoc.user.model;
+package com.thoc.user.model.security;
 
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.stereotype.Service;
 import com.thoc.user.contract.UserTokenService;
 import com.thoc.user.contract.data.UserToken;
@@ -40,7 +41,7 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 		 * Save a new token only if the Authorization header doesn't exit, 
 		 * meaning if the authentication has been processed via username / password.
 		 */
-		if(request.getHeader("Authorization") == null) { 
+		if (request.getHeader("Authorization") == null) { 
 			// Generate a token to add to the Authorization header.
 			String token = this.userTokenService.generateToken();
 			response.addHeader("Authorization", token);
@@ -50,6 +51,8 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 			this.userToken.setUsername(authentication.getName());
 			this.userTokenService.saveToken(this.userToken);
 		}
+		
+		response.sendRedirect("/");
 	}
 	
 }

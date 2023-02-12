@@ -2,14 +2,19 @@ package com.thoc.user.database.entity;
 
 import java.io.Serializable;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.stereotype.Component;
 
 @RedisHash("UserToken")
+@Component("userTokenEntity")
 public class UserToken implements Serializable
 {
+
+	private static final long serialVersionUID = -7100497370294823468L;
 
 	/**
 	 * User token.
 	 */
+	@org.springframework.data.annotation.Id
 	public String Id;
 	
 	/**

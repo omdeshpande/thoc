@@ -8,7 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.thoc.user.model.*;
-import com.thoc.user.model.security.UserTokenFilter;
+import com.thoc.user.model.security.AuthenticationSuccessHandler;
+import com.thoc.user.model.security.LogoutRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -27,10 +28,10 @@ public class Authentication
     private AuthenticationSuccessHandler authenticationSuccessHandler;
     
     /**
-     * Filter to authenticate the user token passed in the 'Authorization' header.
+     * Custom logout request matcher.
      */
     @Autowired
-    private UserTokenFilter userTokenFilter;
+    private LogoutRequestMatcher logoutRequestMatcher;
 
     /**
      * Sets the password encoding algorithm to be used by the application.
@@ -65,7 +66,8 @@ public class Authentication
                 .successHandler(this.authenticationSuccessHandler)
                 .and()
             .userDetailsService(this.userService)
-            .addFilter(this.userTokenFilter);
+            .logout()
+            	.logoutRequestMatcher(this.logoutRequestMatcher);
         return http.build();
 
     }

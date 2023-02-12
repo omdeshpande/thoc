@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.CompositeLogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -35,6 +39,16 @@ public class UserTokenFilter extends OncePerRequestFilter
 	 */
 	@Autowired
 	private UserService userService;
+	
+	/**
+	 * Logout handler.
+	 */
+	private LogoutHandler handlers = new CompositeLogoutHandler(new SecurityContextLogoutHandler());
+	
+	/**
+	 * Security context.
+	 */
+	private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
 
 	/**
 	 * {@inheritDoc}
@@ -49,6 +63,8 @@ public class UserTokenFilter extends OncePerRequestFilter
 		String authToken = request.getHeader("Authorization");
 		if (authToken != null) {
 			this.validateToken(authToken);
+		} else if (response.getHeader("Authorization") == null) {
+			this.doLogout(request, response);
 		}
 		
 		filterChain.doFilter(request, response);
@@ -69,6 +85,12 @@ public class UserTokenFilter extends OncePerRequestFilter
 			Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
+	}
+	
+	private void doLogout(HttpServletRequest request, HttpServletResponse response) 
+	{
+		Authentication auth = this.securityContextHolderStrategy.getContext().getAuthentication();
+		this.handlers.logout(request, response, auth);
 	}
 	
 }

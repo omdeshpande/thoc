@@ -3,7 +3,6 @@ package com.thoc.user.model.security;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.stereotype.Service;
 import com.thoc.user.contract.UserTokenService;
 import com.thoc.user.contract.data.UserToken;

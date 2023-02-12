@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.thoc.user.model.*;
 import com.thoc.user.model.security.AuthenticationSuccessHandler;
-import com.thoc.user.model.security.LogoutRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +25,6 @@ public class Authentication
      */
     @Autowired
     private AuthenticationSuccessHandler authenticationSuccessHandler;
-    
-    /**
-     * Custom logout request matcher.
-     */
-    @Autowired
-    private LogoutRequestMatcher logoutRequestMatcher;
 
     /**
      * Sets the password encoding algorithm to be used by the application.
@@ -65,9 +58,8 @@ public class Authentication
                 .failureUrl("/login/error")
                 .successHandler(this.authenticationSuccessHandler)
                 .and()
-            .userDetailsService(this.userService)
-            .logout()
-            	.logoutRequestMatcher(this.logoutRequestMatcher);
+            .userDetailsService(this.userService);
+        	
         return http.build();
 
     }

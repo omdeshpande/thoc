@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.thoc.user.model.*;
+import com.thoc.user.model.security.UserTokenFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +19,24 @@ public class Authentication
      */
     @Autowired
     private UserService userService;
+    
+    /**
+     * Success handler to generate and save a user token post successful login.
+     */
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    
+    /**
+     * Filter to authenticate the user token passed in the 'Authorization' header.
+     */
+    @Autowired
+    private UserTokenFilter userTokenFilter;
 
+    /**
+     * Sets the password encoding algorithm to be used by the application.
+     * 
+     * @return Instance of type {@link PasswordEncoder}
+     */
     @Bean 
     public PasswordEncoder passwordEncoder()
     { 
@@ -26,8 +44,10 @@ public class Authentication
     }
 
     /**
-     * @param http
-     * @return
+     * Configures the application security behavior.
+     * 
+     * @param http HTTP configuration object of instance {@link HttpSecurity}
+     * @return Instance of type {@link SecurityFilterChain}
      * @throws Exception
      */
     @Bean
@@ -42,8 +62,10 @@ public class Authentication
                 .passwordParameter("password")
                 .loginPage("/login")
                 .failureUrl("/login/error")
+                .successHandler(this.authenticationSuccessHandler)
                 .and()
-            .userDetailsService(this.userService);
+            .userDetailsService(this.userService)
+            .addFilter(this.userTokenFilter);
         return http.build();
 
     }

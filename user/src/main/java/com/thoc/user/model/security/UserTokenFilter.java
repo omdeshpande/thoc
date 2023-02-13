@@ -21,6 +21,7 @@ import com.thoc.user.contract.data.UserToken;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -60,7 +61,7 @@ public class UserTokenFilter extends OncePerRequestFilter
 		FilterChain filterChain
 	) throws ServletException, IOException {
 		
-		String authToken = request.getHeader("Authorization");
+		String authToken = this.getAuthenticationToken(request);
 		if (authToken != null) {
 			this.validateToken(authToken);
 		} else if (response.getHeader("Authorization") == null) {
@@ -87,10 +88,39 @@ public class UserTokenFilter extends OncePerRequestFilter
 		}
 	}
 	
+	/**
+	 * Logs out the user.
+	 * 
+	 * @param request Request data of instance {@link HttpServletRequest}
+	 * @param response Response data of instance {@link HttpServletResponse}
+	 * @return void
+	 */
 	private void doLogout(HttpServletRequest request, HttpServletResponse response) 
 	{
 		Authentication auth = this.securityContextHolderStrategy.getContext().getAuthentication();
 		this.handlers.logout(request, response, auth);
+	}
+	
+	/**
+	 * Parses the token from the request. Either from the cookie, or from the Authorization header.
+	 * 
+	 * @param request Request data of instance {@link HttpServletRequest}.
+	 * @return Auth token of instance {@link String} if it exists, else {@link null}.
+	 */
+	public String getAuthenticationToken(HttpServletRequest request)
+	{
+		String authToken = null;
+		if (request.getHeader("Authorization") != null) {
+			authToken = request.getHeader("Authorization");
+		} else {
+			for (Cookie cookie : request.getCookies()) {
+				if (cookie.getName().equals("Authorization")) {
+					authToken = cookie.getValue();
+				}
+			}
+		}
+		
+		return authToken;
 	}
 	
 }

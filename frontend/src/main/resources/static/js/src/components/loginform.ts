@@ -13,7 +13,8 @@ export class LoginForm extends LitElement {
         this.fetchData()
             .then((response) => response.text())
             .then((data) => {
-                this.content = data;
+				let json = JSON.parse(data);
+                this.content = json.content;
             });
     }
 
@@ -22,7 +23,11 @@ export class LoginForm extends LitElement {
     }
 
     async fetchData() {
-        const response = fetch("http://localhost:8080/login");
+        const response = fetch("http://localhost:8080/api/v1/login/form", {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
         return response;
     }
 

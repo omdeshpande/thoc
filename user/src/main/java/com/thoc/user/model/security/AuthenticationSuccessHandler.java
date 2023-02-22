@@ -4,6 +4,8 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.ISpringTemplateEngine;
 
 import com.thoc.user.contract.UserTokenService;
 import com.thoc.user.contract.data.UserToken;
@@ -27,6 +29,18 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 	 */
 	@Autowired
 	private UserTokenService userTokenService;
+	
+	/**
+	 * Template engine.
+	 */
+	@Autowired
+	private ISpringTemplateEngine templateEngine;
+	
+	/**
+	 * Application context.
+	 */
+	@Autowired
+	private Context context;
 	
 	/**
 	 * {@inheritDoc}
@@ -54,7 +68,12 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 			this.userTokenService.saveToken(this.userToken);
 		}
 		
-		response.sendRedirect("/");
+		// Response content
+		this.context.setVariable("statusCode", "200");
+		this.context.setVariable("statusDescription", "Success");
+		String json = this.templateEngine.process("api/loginform.json", this.context);
+		response.addHeader("Content-Type", "application/json");
+		response.getWriter().append(json);
 	}
 	
 }

@@ -112,7 +112,7 @@ public class UserTokenFilter extends OncePerRequestFilter
 		String authToken = null;
 		if (request.getHeader("Authorization") != null) {
 			authToken = request.getHeader("Authorization");
-		} else {
+		} else if (request.getCookies() != null) {
 			for (Cookie cookie : request.getCookies()) {
 				if (cookie.getName().equals("Authorization")) {
 					authToken = cookie.getValue();

@@ -1,12 +1,12 @@
 <div class="flex justify-center h-screen">
-    <form class="bg-white p-6 rounded-lg w-2/3" th:action="@{/login}" th:object="${user}" method="post">
+    <form class="bg-white p-6 rounded-lg w-2/3" th:action="@{login}" method="post">
         <h2 class="text-lg font-medium mb-4">Sign in</h2>
         <div class="mb-4">
             <label class="block text-gray-700 font-medium mb-2" for="username">
                 Email
             </label>
             <input
-                th:field="*{username}"
+                th:value="${user.username}"
                 class="border border-gray-400 p-2 rounded-lg w-full"
                 type="username"
                 id="username"
@@ -19,7 +19,7 @@
                 Password
             </label>
             <input
-                th:field="*{password}"
+                th:value="${user.password}"
                 class="border border-gray-400 p-2 rounded-lg w-full"
                 type="password"
                 id="password"

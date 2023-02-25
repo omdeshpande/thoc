@@ -1,24 +1,51 @@
 package com.thoc.user.controller;
 
 import java.security.Principal;
-import org.springframework.ui.Model;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/user")
+import com.thoc.user.contract.UserTokenService;
+import com.thoc.user.contract.api.ApiResponse;
+
+@RestController("UserTokenController")
 public class UserToken
 {
 	/**
-	 * Handles user registration.
+	 * User token service.
+	 */
+	@Autowired
+	private UserTokenService userTokenService;
+	
+	/**
+	 * API Response.
+	 */
+	@Autowired
+	private ApiResponse apiResponse;
+	
+	/**
+	 * Validates user authentication token.
 	 * 
-	 * @param model ViewModel to set dynamic variables in the template of instance {@link Model}
+	 * @param principal Logged in user details of instance {@link Principal}
 	 * @return string
 	 */
-	@GetMapping("/token")
-	public String execute(Principal principal)
+	@GetMapping("/api/v1/user/token/validate")
+	public ApiResponse execute(Principal principal)
 	{
-		principal.getName();
-		return null;
-        
+		// Initialize API response.
+		this.apiResponse.setStatus("401");
+		this.apiResponse.setDescription("Unauthorized");
+		this.apiResponse.setContent(null);
+		
+		Optional<com.thoc.user.contract.data.UserToken> userTokenOpt = this.userTokenService.findByUsername(principal.getName());
+		if (userTokenOpt.isPresent()) {
+			this.apiResponse.setStatus("200");
+			this.apiResponse.setDescription("Success");
+			this.apiResponse.setContent(userTokenOpt.get());
+		}
+		
+		return this.apiResponse;
 	}
 }

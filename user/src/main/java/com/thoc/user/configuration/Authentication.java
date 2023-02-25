@@ -48,7 +48,7 @@ public class Authentication
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.authorizeHttpRequests()
-                .requestMatchers("/register/**", "/login/**", "/api/v1/login/form/**").permitAll()
+                .requestMatchers("/register/**", "/login/**", "/api/v1/login/form/**", "/api/v1/user/token/validate/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

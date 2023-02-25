@@ -14,7 +14,7 @@ export class LoginForm extends LitElement {
             .then((response) => response.text())
             .then((data) => {
 				let json = JSON.parse(data);
-                this.content = json.content;
+                this.content = json.content.html;
             });
     }
 

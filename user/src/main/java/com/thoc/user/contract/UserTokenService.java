@@ -28,4 +28,12 @@ public interface UserTokenService
 	 * @return An instance of {@link Optional<UserToken>}
 	 */
 	public Optional<UserToken> authenticateToken(String token);
+	
+	/**
+	 * Find user token details by username.
+	 * 
+	 * @param username Username of instance {@link String}
+	 * @return An instance of {@link Optional<UserToken>}
+	 */
+	public Optional<UserToken> findByUsername(String username);
 }

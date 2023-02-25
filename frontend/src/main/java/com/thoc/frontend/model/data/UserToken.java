@@ -1,12 +1,12 @@
-package com.thoc.user.model.data;
+package com.thoc.frontend.model.data;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserToken implements com.thoc.user.contract.data.UserToken
+public class UserToken implements com.thoc.frontend.contract.data.UserToken
 {
-	
-	private static final long serialVersionUID = 4800324063035161814L;
+
+	private static final long serialVersionUID = -1927436265085117955L;
 
 	/**
 	 * User token.
@@ -36,9 +36,10 @@ public class UserToken implements com.thoc.user.contract.data.UserToken
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setId(String token)
+	public void setId(String token) 
 	{
 		this.id = token;
+		
 	}
 
 	/**

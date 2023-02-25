@@ -92,11 +92,11 @@ public class UserService implements com.thoc.user.contract.UserService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         Optional<UserEntity> userEntityWrapper = this.userRepository.findByEmail(username);
-        if(userEntityWrapper.isPresent()) {
+        if (userEntityWrapper.isPresent()) {
             UserEntity userEntity = userEntityWrapper.get();
             this.user = modelMapper.map(userEntity, com.thoc.user.model.data.User.class);
             this.user.setUsername(userEntity.getEmail());
-            for(UserPassword password : userEntity.getUserPassword()) {
+            for (UserPassword password : userEntity.getUserPassword()) {
                 this.user.setPassword(
                     password.getPassword()
                 );

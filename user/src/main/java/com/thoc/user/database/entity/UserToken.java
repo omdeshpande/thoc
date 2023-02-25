@@ -2,6 +2,7 @@ package com.thoc.user.database.entity;
 
 import java.io.Serializable;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 import org.springframework.stereotype.Component;
 
 @RedisHash("UserToken")
@@ -15,11 +16,13 @@ public class UserToken implements Serializable
 	 * User token.
 	 */
 	@org.springframework.data.annotation.Id
+	@Indexed
 	public String Id;
 	
 	/**
 	 * Username.
 	 */
+	@Indexed
 	public String username;
 	
 	/**

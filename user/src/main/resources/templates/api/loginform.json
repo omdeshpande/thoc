@@ -1,5 +1,0 @@
-{
-	"status": "[(${statusCode})]",
-	"description": "[(${statusDescription})]",
-	"content": "[(${content})]"
-}

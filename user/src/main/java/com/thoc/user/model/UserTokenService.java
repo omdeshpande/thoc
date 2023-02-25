@@ -46,8 +46,18 @@ public class UserTokenService implements com.thoc.user.contract.UserTokenService
 	@Override
 	public void saveToken(UserToken userToken)
 	{
-		this.userTokenEntity = this.modelMapper.map(userToken, com.thoc.user.database.entity.UserToken.class);
-		this.userTokenRepository.save(this.userTokenEntity);
+		// Check if user already has a token, if yes, then update.
+		Optional<com.thoc.user.database.entity.UserToken> userTokenEntityOpt = this.userTokenRepository.findByUsername(userToken.getUsername());
+		if (userTokenEntityOpt.isPresent()) {
+			com.thoc.user.database.entity.UserToken userTokenExisting = userTokenEntityOpt.get();
+			userTokenExisting.setId(userToken.getId());
+			this.userTokenRepository.save(userTokenExisting);
+		} else {
+			this.userTokenEntity = this.modelMapper.map(userToken, com.thoc.user.database.entity.UserToken.class);
+			this.userTokenRepository.save(this.userTokenEntity);
+		}
+		
+		
 		
 	}
 
@@ -58,7 +68,23 @@ public class UserTokenService implements com.thoc.user.contract.UserTokenService
 	public Optional<UserToken> authenticateToken(String token)
 	{
 		Optional<com.thoc.user.database.entity.UserToken> userTokenEntityOpt = this.userTokenRepository.findById(token);
-		if(userTokenEntityOpt.isPresent()) {
+		if (userTokenEntityOpt.isPresent()) {
+			com.thoc.user.database.entity.UserToken userTokenEntity = userTokenEntityOpt.get();
+			UserToken userToken = this.modelMapper.map(userTokenEntity, com.thoc.user.model.data.UserToken.class);
+			return Optional.of(userToken);
+		}
+		
+		return Optional.empty();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Optional<UserToken> findByUsername(String username) 
+	{
+		Optional<com.thoc.user.database.entity.UserToken> userTokenEntityOpt = this.userTokenRepository.findByUsername(username);
+		if (userTokenEntityOpt.isPresent()) {
 			com.thoc.user.database.entity.UserToken userTokenEntity = userTokenEntityOpt.get();
 			UserToken userToken = this.modelMapper.map(userTokenEntity, com.thoc.user.model.data.UserToken.class);
 			return Optional.of(userToken);

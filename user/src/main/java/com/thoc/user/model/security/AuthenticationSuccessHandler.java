@@ -1,13 +1,15 @@
 package com.thoc.user.model.security;
 
 import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring6.ISpringTemplateEngine;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoc.user.contract.UserTokenService;
+import com.thoc.user.contract.api.ApiResponse;
 import com.thoc.user.contract.data.UserToken;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -31,16 +33,16 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 	private UserTokenService userTokenService;
 	
 	/**
-	 * Template engine.
+	 * API Response.
 	 */
 	@Autowired
-	private ISpringTemplateEngine templateEngine;
+	private ApiResponse apiResponse;
 	
 	/**
-	 * Application context.
+	 * Object mapper.
 	 */
 	@Autowired
-	private Context context;
+	private ObjectMapper objectMapper;
 	
 	/**
 	 * {@inheritDoc}
@@ -68,12 +70,25 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 			this.userTokenService.saveToken(this.userToken);
 		}
 		
-		// Response content
-		this.context.setVariable("statusCode", "200");
-		this.context.setVariable("statusDescription", "Success");
-		String json = this.templateEngine.process("api/loginform.json", this.context);
+		this.setResponse(response);
+	}
+	
+	/**
+	 * Set the response for a successful authentication.
+	 * 
+	 * @param response Response object of instance {@link HttpServletResponse}
+	 * @throws JsonProcessingException
+	 * @throws IOException
+	 * @return void
+	 */
+	public void setResponse(HttpServletResponse response) throws JsonProcessingException, IOException
+	{
+		this.apiResponse.setStatus("200");
+		this.apiResponse.setDescription("Success");
+		this.apiResponse.setContent(null);
+		
 		response.addHeader("Content-Type", "application/json");
-		response.getWriter().append(json);
+		response.getWriter().append(objectMapper.writeValueAsString(this.apiResponse));
 	}
 	
 }

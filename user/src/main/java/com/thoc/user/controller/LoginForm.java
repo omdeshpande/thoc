@@ -4,10 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.ISpringTemplateEngine;
-import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.thoc.user.contract.api.ApiResponse;
+import com.thoc.user.contract.api.HtmlContent;
 import com.thoc.user.contract.data.User;
 
 @Controller
@@ -31,6 +34,18 @@ public class LoginForm
 	 */
 	@Autowired
 	private Context context;
+	
+	/**
+	 * API Response.
+	 */
+	@Autowired
+	private ApiResponse apiResponse;
+	
+	/**
+	 * API Content.
+	 */
+	@Autowired
+	private HtmlContent htmlContent;
 
 	/**
 	 * Handles the rendering of the login form.
@@ -54,17 +69,19 @@ public class LoginForm
 	 */
 	@GetMapping("/api/v1/login/form")
 	@CrossOrigin(origins = "http://localhost:8081")
-	public String executeApi(Model model)
+	@ResponseBody
+	public ApiResponse executeApi(Model model)
 	{
-		model.addAttribute("statusCode", "200");
-		model.addAttribute("statusDescription", "Success");
+		this.apiResponse.setStatus("200");
+		this.apiResponse.setDescription("Success");
 		
 		// Content
 		this.context.setVariable("user", this.user); 
 		String html = this.templateEngine.process("loginform", this.context);
-		model.addAttribute("content", StringEscapeUtils.escapeJson(html));
-		   
-		return "api/loginform.json";
+		this.htmlContent.setHtml(html);
+		this.apiResponse.setContent(this.htmlContent);
+		
+		return this.apiResponse;
 	}
 
 }

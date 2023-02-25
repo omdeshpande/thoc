@@ -1,6 +1,4 @@
-package com.thoc.frontend.contract.data;
-
-import java.util.Map;
+package com.thoc.user.contract.api;
 
 public interface ApiResponse
 {
@@ -37,15 +35,15 @@ public interface ApiResponse
 	/**
 	 * Get API response content.
 	 * 
-	 * @return API response content of instance {@link Map<String, Object>}.
+	 * @return API response content of instance {@link ApiContent}.
 	 */
-	public Map<String, Object> getContent();
+	public ApiContent getContent();
 	
 	/**
 	 * Set API response content.
 	 * 
-	 * @param content API content of instance {@link Map<String, Object>}.
+	 * @param content API content of instance {@link ApiContent}.
 	 * @return void
 	 */
-	public void setContent(Map<String, Object> content);
+	public void setContent(ApiContent content);
 }

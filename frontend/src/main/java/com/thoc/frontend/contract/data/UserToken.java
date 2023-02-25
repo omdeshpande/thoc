@@ -1,10 +1,8 @@
-package com.thoc.user.contract.data;
+package com.thoc.frontend.contract.data;
 
 import java.io.Serializable;
 
-import com.thoc.user.contract.api.ApiContent;
-
-public interface UserToken extends Serializable, ApiContent
+public interface UserToken extends Serializable
 {
 
 	/**

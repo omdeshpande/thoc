@@ -2,6 +2,8 @@ package com.thoc.frontend.contract;
 
 import java.util.List;
 
+import com.thoc.frontend.contract.data.UserToken;
+
 public interface UserAuthService
 {
 	/**
@@ -26,4 +28,19 @@ public interface UserAuthService
 	 * @return Authentication token of instance {@link String}.
 	 */
 	public List<String> getAuthToken();
+	
+	/**
+	 * Validates an authentication token.
+	 * 
+	 * @param token Authentication token of instance {@link String}.
+	 * @return Whether a token is valid or not (true / false).
+	 */
+	public UserAuthService validateAuthToken(String token);
+	
+	/**
+	 * Get the user details, post successful authentication.
+	 * 
+	 * @return User details of instance {@link UserToken}.
+	 */
+	public UserToken getUserDetails();
 }

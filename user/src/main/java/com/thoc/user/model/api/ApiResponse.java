@@ -1,12 +1,11 @@
-package com.thoc.frontend.model.data;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+package com.thoc.user.model.api;
 
 import org.springframework.stereotype.Component;
 
+import com.thoc.user.contract.api.ApiContent;
+
 @Component
-public class ApiResponse implements com.thoc.frontend.contract.data.ApiResponse
+public class ApiResponse implements com.thoc.user.contract.api.ApiResponse
 {
 	/**
 	 * API response status.
@@ -21,10 +20,10 @@ public class ApiResponse implements com.thoc.frontend.contract.data.ApiResponse
 	/**
 	 * API response content.
 	 */
-	private Map<String, Object> content = new LinkedHashMap<>();
+	private ApiContent content;
 
 	@Override
-	public String getStatus() 
+	public String getStatus()
 	{
 		return this.status;
 	}
@@ -48,14 +47,14 @@ public class ApiResponse implements com.thoc.frontend.contract.data.ApiResponse
 	}
 
 	@Override
-	public Map<String, Object> getContent() 
+	public ApiContent getContent() 
 	{
 		return this.content;
 	}
 
 	@Override
-	public void setContent(Map<String, Object> content) 
+	public void setContent(ApiContent content) 
 	{
-		this.content = content;
+		this.content = content;	
 	}
 }

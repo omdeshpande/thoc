@@ -67,7 +67,7 @@ public class LoginForm
 	 * @param model ViewModel to set dynamic variables in the template of instance {@link Model}
 	 * @return string 
 	 */
-	@GetMapping("/api/v1/login/form")
+	@GetMapping("/api/v1/html/login-form")
 	@CrossOrigin(origins = "http://localhost:8081")
 	@ResponseBody
 	public ApiResponse executeApi(Model model)

@@ -13,7 +13,7 @@ public class MenuItems
 	 * 
 	 * @return string 
 	 */
-	@GetMapping("/menu-items")
+	@GetMapping("/api/v1/html/menu-items")
 	@CrossOrigin(origins = "http://localhost:8081")
 	public String execute(Model model, HttpSession session)
 	{

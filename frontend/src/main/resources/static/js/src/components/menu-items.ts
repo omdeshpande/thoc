@@ -13,7 +13,8 @@ export class MenuItems extends LitElement {
         this.fetchData()
             .then((response) => response.text())
             .then((data) => {
-                this.content = data;
+                let json = JSON.parse(data);
+                this.content = json.content.html;
             });
     }
 
@@ -22,7 +23,7 @@ export class MenuItems extends LitElement {
     }
 
     async fetchData() {
-        const response = fetch("http://localhost:8082/menu-items");
+        const response = fetch("/getMenuItems");
         return response;
     }
     

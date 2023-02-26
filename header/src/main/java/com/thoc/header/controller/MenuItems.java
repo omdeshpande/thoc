@@ -53,7 +53,9 @@ public class MenuItems
 		
 		// Is user logged in?
 		boolean isLoggedIn = false;
-		if (principal.getName().isEmpty() == false) {
+		if (principal != null
+			&& principal.getName().isEmpty() == false
+		) {
 			isLoggedIn = true;
 		}
 		

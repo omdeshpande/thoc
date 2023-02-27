@@ -92,5 +92,16 @@ public class UserTokenService implements com.thoc.user.contract.UserTokenService
 		
 		return Optional.empty();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void delete(UserToken userToken) 
+	{
+		com.thoc.user.database.entity.UserToken userTokenEntity = this.modelMapper.map(userToken, com.thoc.user.database.entity.UserToken.class);
+		this.userTokenRepository.delete(userTokenEntity);
+		
+	}
 	
 }

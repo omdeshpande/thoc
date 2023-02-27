@@ -39,6 +39,7 @@ public class Authentication
                 .anyRequest().permitAll()
         		.and()
         	.userDetailsService(this.userService)
+        	.logout().disable()
         	.csrf().disable();
         return http.build();
 

@@ -100,4 +100,21 @@ public class UserAuthService implements com.thoc.frontend.contract.UserAuthServi
 		Map<String, Object> content = this.response.getBody().getContent();
 		return this.modelMapper.map(content, com.thoc.frontend.model.data.UserToken.class);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public com.thoc.frontend.contract.UserAuthService logout(String token) 
+	{
+		this.response = this.restClient.post()
+			.uri("http://localhost:8080/logout")
+			.header("Authorization", token)
+		    .accept(MediaType.APPLICATION_JSON)
+			.retrieve()
+			.toEntity(ApiResponse.class)
+			.block();
+		
+		return this;
+	}
 }

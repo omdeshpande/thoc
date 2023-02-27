@@ -1,14 +1,17 @@
 package com.thoc.user.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*; 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+
 import com.thoc.user.model.*;
-import com.thoc.user.model.security.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +27,12 @@ public class Authentication
      * Success handler to generate and save a user token post successful login.
      */
     @Autowired
+    @Qualifier("thoc_auth_success_handler")
     private AuthenticationSuccessHandler authenticationSuccessHandler;
+    
+    @Autowired
+    @Qualifier("thoc_logout_success_handler")
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
      * Sets the password encoding algorithm to be used by the application.
@@ -58,6 +66,8 @@ public class Authentication
                 .failureUrl("/login/error")
                 .successHandler(this.authenticationSuccessHandler)
                 .and()
+            .logout().logoutSuccessHandler(this.logoutSuccessHandler)
+            	.and()
             .userDetailsService(this.userService)
             .csrf().disable();
         	

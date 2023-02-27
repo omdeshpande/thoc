@@ -1,30 +1,25 @@
 package com.thoc.user.model.security;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoc.user.contract.UserTokenService;
 import com.thoc.user.contract.api.ApiResponse;
 import com.thoc.user.contract.data.UserToken;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Service("thoc_auth_success_handler")
-public class AuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler
+@Component("thoc_logout_success_handler")
+public class LogoutSuccessHandler implements org.springframework.security.web.authentication.logout.LogoutSuccessHandler
 {
-	
-	/**
-	 * User token.
-	 */
-	@Autowired
-	private UserToken userToken;
 	
 	/**
 	 * Service to handle user tokens.
@@ -43,31 +38,22 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 	 */
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDoc} 
 	 */
 	@Override
-	public void onAuthenticationSuccess(
+	public void onLogoutSuccess(
 		HttpServletRequest request, 
-		HttpServletResponse response,
+		HttpServletResponse response, 
 		Authentication authentication
 	) throws IOException, ServletException {
 		
-		/** 
-		 * Save a new token only if the Authorization header doesn't exit, 
-		 * meaning if the authentication has been processed via username / password.
-		 */
-		if (request.getHeader("Authorization") == null) { 
-			// Generate a token to add to the Authorization header.
-			String token = this.userTokenService.generateToken();
-			response.addHeader("Authorization", token);
-			response.addCookie(new Cookie("Authorization", token));
-			
-			// Save the token, this will be required to validate future requests from clients.
-			this.userToken.setId(token);
-			this.userToken.setUsername(authentication.getName());
-			this.userTokenService.saveToken(this.userToken);
+		// Delete authorization token.
+		String token = request.getHeader("Authorization");
+		Optional<UserToken> userTokenOpt = this.userTokenService.authenticateToken(token);
+		if (userTokenOpt.isPresent()) {
+			this.userTokenService.delete(userTokenOpt.get());
 		}
 		
 		this.setResponse(response);

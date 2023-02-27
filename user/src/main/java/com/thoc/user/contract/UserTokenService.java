@@ -36,4 +36,13 @@ public interface UserTokenService
 	 * @return An instance of {@link Optional<UserToken>}
 	 */
 	public Optional<UserToken> findByUsername(String username);
+	
+	
+	/**
+	 * Delete user token.
+	 * 
+	 * @param userToken User token details of instance {@link UserToken}.
+	 * @return void
+	 */
+	public void delete(UserToken userToken);
 }

@@ -16,6 +16,14 @@ public interface UserAuthService
 	public UserAuthService login(String username, String password);
 	
 	/**
+	 * Logs the user out.
+	 * 
+	 * @param token Authorization token of instance {@link String}.
+	 * @return void
+	 */
+	public UserAuthService logout(String token);
+	
+	/**
 	 * Whether the login was successful or not.
 	 * 
 	 * @return {@link boolean}.

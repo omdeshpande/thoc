@@ -2,6 +2,7 @@ package com.thoc.frontend.contract;
 
 import java.util.List;
 
+import com.thoc.frontend.contract.data.ApiResponse;
 import com.thoc.frontend.contract.data.UserToken;
 
 public interface UserAuthService
@@ -51,4 +52,12 @@ public interface UserAuthService
 	 * @return User details of instance {@link UserToken}.
 	 */
 	public UserToken getUserDetails();
+	
+	/**
+	 * Get the login form html from the user service.
+	 * 
+	 * @param token Auth token of instance {@link String}.
+	 * @return Api response of instance {@link ApiResponse}.
+	 */
+	public ApiResponse getLoginForm(String token);
 }

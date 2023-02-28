@@ -39,6 +39,10 @@ public class UserToken
 		this.apiResponse.setDescription("Unauthorized");
 		this.apiResponse.setContent(null);
 		
+		if (principal == null) {
+			return this.apiResponse;
+		}
+		
 		Optional<com.thoc.user.contract.data.UserToken> userTokenOpt = this.userTokenService.findByUsername(principal.getName());
 		if (userTokenOpt.isPresent()) {
 			this.apiResponse.setStatus("200");

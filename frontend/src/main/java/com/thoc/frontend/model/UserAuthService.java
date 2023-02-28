@@ -117,4 +117,20 @@ public class UserAuthService implements com.thoc.frontend.contract.UserAuthServi
 		
 		return this;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public com.thoc.frontend.contract.data.ApiResponse getLoginForm(String token) 
+	{
+		return this.restClient.get()
+			.uri("http://user-service/api/v1/html/login-form")
+			.header("Authorization", token)
+		    .accept(MediaType.APPLICATION_JSON)
+			.retrieve()
+			.toEntity(ApiResponse.class)
+			.block()
+			.getBody();
+	}
 }

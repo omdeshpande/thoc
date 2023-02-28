@@ -23,7 +23,7 @@ export class LoginForm extends LitElement {
     }
 
     async fetchData() {
-        const response = fetch("http://localhost:8080/api/v1/html/login-form", {
+        const response = fetch("/getLoginForm", {
 			headers: {
 				'Content-Type': 'application/json'
 			}

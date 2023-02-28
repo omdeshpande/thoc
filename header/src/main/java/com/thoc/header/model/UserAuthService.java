@@ -41,7 +41,7 @@ public class UserAuthService implements com.thoc.header.contract.UserAuthService
 	public com.thoc.header.contract.UserAuthService login(String username, String password)
 	{
 		this.response = this.restClient.post()
-			.uri("http://localhost:8080/login")
+			.uri("http://user-service/login")
 			.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 		    .accept(MediaType.APPLICATION_JSON)
 			.body(BodyInserters.fromFormData("username", username)
@@ -81,7 +81,7 @@ public class UserAuthService implements com.thoc.header.contract.UserAuthService
 	public com.thoc.header.contract.UserAuthService validateAuthToken(String token) 
 	{
 		this.response = this.restClient.get()
-			.uri("http://localhost:8080/api/v1/user/token/validate")
+			.uri("http://user-service/api/v1/user/token/validate")
 			.header("Authorization", token)
 		    .accept(MediaType.APPLICATION_JSON)
 			.retrieve()

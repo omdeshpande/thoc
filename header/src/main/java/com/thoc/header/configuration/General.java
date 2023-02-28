@@ -1,6 +1,7 @@
 package com.thoc.header.configuration;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,13 +12,20 @@ import org.thymeleaf.context.Context;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
+@EnableDiscoveryClient
 public class General
 {
 	@Bean 
-	@LoadBalanced
     public WebClient restClient()
     { 
-        return WebClient.builder().clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true))).build();
+        return this.restClientBuilder().clientConnector(new ReactorClientHttpConnector(HttpClient.create().wiretap(true))).build();
+    }
+	
+	@Bean
+    @LoadBalanced
+    public WebClient.Builder restClientBuilder() 
+	{
+        return WebClient.builder();
     }
 	
 	@Bean

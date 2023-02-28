@@ -25,7 +25,7 @@ public class HeaderService implements com.thoc.frontend.contract.HeaderService
 	public com.thoc.frontend.contract.data.ApiResponse getMenuItems(String token) 
 	{
 		ResponseEntity<ApiResponse> response = this.restClient.get()
-			.uri("http://localhost:8082/api/v1/html/menu-items")
+			.uri("http://header-service/api/v1/html/menu-items")
 			.header("Authorization", token)
 		    .accept(MediaType.APPLICATION_JSON)
 			.retrieve()

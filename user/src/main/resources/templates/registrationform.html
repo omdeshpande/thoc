@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <title>Login</title>
-</head>
-<body>
     <div class="flex justify-center h-screen">
-        <form class="bg-white p-6 rounded-lg w-3/4" th:action="@{/register}" method="post">
+        <form class="bg-white p-6 rounded-lg w-3/4" th:action="@{register}" method="post">
             <h2 class="text-lg font-medium mb-4">Register</h2>
             <div class="mb-4">
                 <label class="block text-gray-700 font-medium mb-2" for="firstname">
@@ -80,5 +73,4 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+

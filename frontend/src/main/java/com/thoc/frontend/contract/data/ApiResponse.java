@@ -1,8 +1,9 @@
 package com.thoc.frontend.contract.data;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public interface ApiResponse
+public interface ApiResponse extends Serializable
 {
 	/**
 	 * Get API response status.

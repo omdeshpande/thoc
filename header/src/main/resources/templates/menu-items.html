@@ -1,6 +1,7 @@
 <div class="bg-gray-800 text-white py-4 hidden" id="mega-menu">
     <nav class="container mx-auto flex items-center">
-        <a th:if="${isLoggedIn == false}" href="/login" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">Login</a>
+        <a th:if="${isLoggedIn == false}" href="/login" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">Sign in</a>
+        <a th:if="${isLoggedIn == false}" href="/register" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">Sign up</a>
         <a th:if="${isLoggedIn == true}" href="/logout" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">Logout</a>
         <a href="#" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">Other</a>
     </nav>

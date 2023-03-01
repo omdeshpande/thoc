@@ -7,7 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class User implements com.thoc.user.contract.data.User
 {
-    /**
+    
+	private static final long serialVersionUID = 6081524515717405200L;
+
+	/**
      * User ID.
      */
     private Integer id;

@@ -56,8 +56,8 @@ public class Authentication
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.authorizeHttpRequests()
-                .requestMatchers("/register/**", "/login/**", "/api/v1/html/login-form/**", "/api/v1/user/token/validate/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/register/**", "/login/**", "/api/v1/html/login-form/**", "/api/v1/html/registration-form/**", "/api/v1/user/token/validate/**", "/api/v1/user/create/**").permitAll()
+                .anyRequest().authenticated() 
                 .and()
             .formLogin()
                 .usernameParameter("username")

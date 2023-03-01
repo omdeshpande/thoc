@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApiResponse implements com.thoc.frontend.contract.data.ApiResponse
 {
+
+	private static final long serialVersionUID = 7158635456624023296L;
+
 	/**
 	 * API response status.
 	 */

@@ -75,5 +75,21 @@ public class UserAccountService implements com.thoc.frontend.contract.UserAccoun
 		}
 		return false;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ApiResponse getUserEditForm(String token) 
+	{
+		return this.restClient.get()
+			.uri("http://user-service/api/v1/html/user-edit-form")
+			.header("Authorization", token)
+		    .accept(MediaType.APPLICATION_JSON)
+			.retrieve()
+			.toEntity(com.thoc.frontend.model.data.ApiResponse.class)
+			.block()
+			.getBody();
+	}
 	
 }

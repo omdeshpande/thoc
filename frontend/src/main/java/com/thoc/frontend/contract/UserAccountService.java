@@ -28,5 +28,13 @@ public interface UserAccountService
 	 * @return {@link boolean}.
 	 */
 	public boolean isSuccess();
+
+	/**
+	 * Get user edit form html from the user service.
+	 * 
+	 * @param token Auth token of instance {@link String}.
+	 * @return Api response data of instance {@link ApiResponse}.
+	 */
+	public ApiResponse getUserEditForm(String token);
 	
 }

@@ -15,7 +15,7 @@
 	<name>Service Discovery</name>
 	<description>Helps microservices with Service Discovery</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 
